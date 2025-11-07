@@ -21,7 +21,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = (result.user)
                 // added database server
-                fetch('https://smart-deals-server-ten.vercel.app/users', {
+                fetch('https://smart-deals-server-mu.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json' // Set the content type of the data being sent
@@ -57,7 +57,7 @@ const Login = () => {
 
                 const token = await loggedUser.getIdToken();
 
-                fetch('https://smart-deals-server-ten.vercel.app/users', {
+                fetch('https://smart-deals-server-mu.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json' // Set the content type of the data being sent

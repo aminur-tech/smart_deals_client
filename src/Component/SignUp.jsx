@@ -60,7 +60,7 @@ const SignUp = () => {
                 updateUser({ displayName: name, photoURL: photo })
                     .then(() => {
                         // added data to database server
-                        fetch('https://smart-deals-server-ten.vercel.app/users', {
+                        fetch('https://smart-deals-server-mu.vercel.app/users', {
                             method: "POST",
                             headers: {
                                 'Content-Type': 'application/json' // Set the content type of the data being sent
@@ -100,7 +100,7 @@ const SignUp = () => {
 
                 const token =await loggedUser.getIdToken()
 
-                fetch('https://smart-deals-server-ten.vercel.app/users', {
+                fetch('https://smart-deals-server-mu.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json' // Set the content type of the data being sent

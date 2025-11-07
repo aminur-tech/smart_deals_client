@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router";
 
 const ProductCard = ({ product }) => {
+  console.log(product)
   return (
+    <>
     <div className="border rounded-2xl p-3 shadow-sm hover:shadow-md transition duration-200">
       {/* Image */}
      
-        <img src= {product.image} className="w-full h-50 rounded-xl mb-3"/>
+        <img src= {product.image} className="w-full h-60 rounded-xl mb-3"/>
      
 
       {/* Title */}
@@ -27,6 +29,8 @@ const ProductCard = ({ product }) => {
         View Details
       </Link>
     </div>
+    
+    </>
   );
 };
 

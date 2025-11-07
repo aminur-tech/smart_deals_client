@@ -1,19 +1,21 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useLoaderData, Link} from "react-router";
+import { useLoaderData, Link } from "react-router";
 import { AuthContext } from "../Providers/AuthContext";
 import Swal from "sweetalert2";
 
 const ProductDetails = () => {
-    const { _id: productId } = useLoaderData();
+    const product = useLoaderData();
+    const { _id: productId } = product;
+
     const [bids, setBids] = useState([])
     const bidsModalRef = useRef()
     const { user } = useContext(AuthContext)
 
 
     useEffect(() => {
-        fetch(`https://smart-deals-server-ten.vercel.app/products/bids/${productId}`,{
-            headers:{
-                authorized : `bearer ${user.accessToken}`
+        fetch(`https://smart-deals-server-mu.vercel.app/products/bids/${productId}`, {
+            headers: {
+                authorized: `bearer ${user.accessToken}`
             }
         })
             .then(res => res.json())
@@ -33,14 +35,13 @@ const ProductDetails = () => {
         category,
         price_min,
         price_max,
-        _id,
         seller_image,
         seller_name,
         email,
         location,
         seller_contact,
         status,
-    } = productId;
+    } = product;
 
     const handleModalOpenBtn = () => {
         bidsModalRef.current.showModal()
@@ -59,7 +60,7 @@ const ProductDetails = () => {
             bid_price: bid,
             status: 'pending'
         }
-        fetch('https://smart-deals-server-ten.vercel.app/bids', {
+        fetch('https://smart-deals-server-mu.vercel.app/bids', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -93,11 +94,11 @@ const ProductDetails = () => {
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 mb-12">
                 {/* Left: Image + Description */}
                 <div className="flex flex-col gap-4">
-                    <div className="bg-gray-200 w-full h-96 rounded-xl flex items-center justify-center">
+                    <div className="bg-gray-200 rounded-xl flex items-center justify-center">
                         <img
                             src={image}
                             alt={title}
-                            className="object-contain w-full h-full rounded-xl"
+                            className=" w-full h-96 rounded-xl"
                         />
                     </div>
 
@@ -236,7 +237,7 @@ const ProductDetails = () => {
                                         </div>
                                     </td>
                                     <td>
-                                       {bid.buyer_email}  
+                                        {bid.buyer_email}
                                     </td>
                                     <td>{bid.bid_price}</td>
                                     <th>

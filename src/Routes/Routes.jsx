@@ -8,6 +8,9 @@ import ProductDetails from "../Component/ProductDetails";
 import MyBids from "../Component/MyBids";
 import PrivateRoutes from "./PrivateRoutes";
 import CreateAProduct from "../Component/CreateAProduct";
+import AllProducts from "../Pages/AllProducts";
+import Loading from "../Component/Loading";
+
 
 
 export const router = createBrowserRouter([
@@ -21,8 +24,9 @@ export const router = createBrowserRouter([
         },
         {
             path: "productDetails/:id",
-            loader: ({ params }) => fetch(`https://smart-deals-server-ten.vercel.app/products/${params.id}`),
-            element: <PrivateRoutes><ProductDetails></ProductDetails></PrivateRoutes>
+            loader: ({ params }) => fetch(`https://smart-deals-server-mu.vercel.app/products/${params.id}`),
+            element: <PrivateRoutes><ProductDetails></ProductDetails></PrivateRoutes>,
+            HydrateFallback: Loading
         },
 
         {
@@ -32,6 +36,12 @@ export const router = createBrowserRouter([
         {
             path: '/createAProduct',
             element: <PrivateRoutes><CreateAProduct></CreateAProduct></PrivateRoutes>
+        },
+        {
+            path: '/allProducts',
+            loader: () => fetch("https://smart-deals-server-mu.vercel.app/products"),
+            Component: AllProducts,
+            HydrateFallback: Loading
         }
         ]
     },
